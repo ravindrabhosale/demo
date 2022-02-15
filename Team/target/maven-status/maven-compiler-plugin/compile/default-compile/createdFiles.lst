@@ -1,0 +1,12 @@
+com/team/model/Group.class
+com/team/model/Partitions.class
+com/team/model/Member.class
+com/team/service/MemberGroupingService.class
+com/team/model/Partition.class
+com/team/controller/GroupController.class
+com/team/model/GroupingResult.class
+com/team/service/PartitionProcessor.class
+com/team/GroupServiceApplication.class
+com/team/service/GroupBuilder.class
+com/team/model/Role.class
+com/team/Example.class
