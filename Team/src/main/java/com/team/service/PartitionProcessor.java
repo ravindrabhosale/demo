@@ -12,6 +12,12 @@ import java.util.List;
 public class PartitionProcessor {
     private static final Logger LOGGER = LogManager.getLogger(PartitionProcessor.class);
 
+    /**
+     * Partition the given payload as per location of members.
+     * Each partition can be processed parallel.
+     * @param members
+     * @return
+     */
     public Partitions process(List<Member> members){
         Partitions partitions = new Partitions();
         for (Member member : members) {
