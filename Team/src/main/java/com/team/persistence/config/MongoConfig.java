@@ -4,6 +4,9 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -22,6 +25,10 @@ import java.util.List;
 @EnableMongoRepositories(basePackages = "com.team.persistence.repository")
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
+    private static final Logger LOGGER = LogManager.getLogger(MongoConfig.class);
+
+    @Value("${spring.data.mongodb.uri}")
+    private String mongoDbUrl;
 
     private final List<Converter<?, ?>> converters = new ArrayList<>();
 
@@ -37,8 +44,9 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     public MongoClient mongoClient() {
+        LOGGER.info("mongoDbUrl: {}", mongoDbUrl);
         final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString("mongodb://localhost:27017/grouping?retryWrites=false"))
+                .applyConnectionString(new ConnectionString(mongoDbUrl))
                 .build();
         return MongoClients.create(mongoClientSettings);
     }

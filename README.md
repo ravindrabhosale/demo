@@ -5,9 +5,13 @@ cd Team
 
 mvn clean install
 
-#Run application
+#Build Docker image of application
 
-./mvnw spring-boot:run
+sudo docker-compose build
+
+#Run Docker image application
+
+sudo docker-compose up
 
 # REST API
 
