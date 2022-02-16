@@ -1,27 +1,27 @@
-package com.team.model;
+package com.team.persistence.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Objects;
 @Document(collection = "members")
-public class Member {
+public class MemberDto {
     @Id
     private String name;
     private int age;
     private String location;
-    @JsonProperty("Role")
     private String role;
+    private String groupId;
 
-    public Member(String name, int age, String location, String role) {
+    public MemberDto(String name, int age, String location, String role) {
         this.name = name;
         this.age = age;
         this.location = location;
         this.role = role;
     }
 
-    public Member() {
+    public MemberDto() {
     }
 
     public String getName() {
@@ -60,7 +60,7 @@ public class Member {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Member member = (Member) o;
+        MemberDto member = (MemberDto) o;
         return getAge() == member.getAge() &&
                 getName().equals(member.getName()) &&
                 getLocation().equals(member.getLocation()) &&
@@ -74,7 +74,7 @@ public class Member {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Member{");
+        final StringBuilder sb = new StringBuilder("MemberDto{");
         sb.append("name='").append(name).append('\'');
         sb.append(", age=").append(age);
         sb.append(", location='").append(location).append('\'');
